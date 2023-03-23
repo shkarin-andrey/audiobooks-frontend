@@ -3,7 +3,17 @@ import { Link } from 'react-router-dom';
 import Button from '../Button';
 import { ICard } from './Card.interface';
 
-const Card: FC<ICard> = ({ id, img, title, author, reader, year, duration, description }) => {
+const Card: FC<ICard> = ({
+  id,
+  img,
+  title,
+  author,
+  reader,
+  series,
+  year,
+  duration,
+  description,
+}) => {
   return (
     <Link
       to={`/books/${id}`}
@@ -17,15 +27,26 @@ const Card: FC<ICard> = ({ id, img, title, author, reader, year, duration, descr
         <h3>
           <span className='font-bold'>Автор:</span> {author}
         </h3>
-        <h3>
-          <span className='font-bold'>Чтец:</span> {reader}
-        </h3>
-        <h3>
-          <span className='font-bold'>Год:</span> {year}
-        </h3>
-        <h3>
-          <span className='font-bold'>Длительность:</span> {duration}
-        </h3>
+        {reader && (
+          <h3>
+            <span className='font-bold'>Чтец:</span> {reader}
+          </h3>
+        )}
+        {series && (
+          <h3>
+            <span className='font-bold'>Серия:</span> {series}
+          </h3>
+        )}
+        {year && (
+          <h3>
+            <span className='font-bold'>Год:</span> {year}
+          </h3>
+        )}
+        {duration && (
+          <h3>
+            <span className='font-bold'>Длительность:</span> {duration}
+          </h3>
+        )}
         <p className='mt-2 mb-2 text-sm'>{description}</p>
         <div className='flex sm:justify-start justify-center'>
           <Button>Слушать аудиокнигу</Button>
